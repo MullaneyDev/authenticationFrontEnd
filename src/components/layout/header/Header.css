@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 60px;
+    align-content: center;
+    background-color: #464545;
+    color: white;
+    font-size: xx-large;
+}

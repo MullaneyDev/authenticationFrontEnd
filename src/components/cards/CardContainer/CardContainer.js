@@ -1,16 +1,19 @@
 import React from "react";
 import Card from "../Card/Card";
-import "./CardContainer.css"
+import "./CardContainer.css";
+import { findAllUsers } from "../../../utils";
 
-const CardContainer = () => {
-
-    const fakeUsers = ["bill","jane", "fred", "sarah", "bob","alice"]
-
+const CardContainer = ({ users, setUsers }) => {
+  const getUsers = async () => {
+    const registeredUsers = await findAllUsers();
+    setUsers(registeredUsers.getUsers)
+  };
   return (
     <div className="cardContainer">
-        {fakeUsers.map((user, index) => (
-          <Card key={index} user={user} />  
-        ))}
+      {users.map((user, index) => (
+        <Card key={index} user={user} />
+      ))}
+      <button onClick={getUsers}>See Users</button>
     </div>
   );
 };

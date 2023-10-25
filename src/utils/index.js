@@ -1,6 +1,6 @@
 export const findAllUsers = async () => {
   try {
-    const response = await fetch("http://localhost:5001/users/admin");
+    const response = await fetch(`http://localhost:5001/user/admin`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -8,9 +8,19 @@ export const findAllUsers = async () => {
   }
 };
 
-export const login = async () => {
+export const loginUser = async (username, password) => {
   try {
-    const response = await fetch("http://localhost:5001/users/login");
+    const response = await fetch(`http://localhost:5001/user/login`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -18,9 +28,21 @@ export const login = async () => {
   }
 };
 
-export const register = async () => {
+export const registerUser = async (username, email, password) => {
   try {
-    const response = await fetch("http://localhost:5001/users/register");
+    const response = await fetch(`http://localhost:5001/user/register`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        email: email,
+        password: password,
+        isAdmin: false,
+      }),
+    });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -28,10 +50,21 @@ export const register = async () => {
   }
 };
 
-export const updateUsername = async () => {
+export const updateUsername = async (username,newUsername) => {
   try {
     const response = await fetch(
-      "http://localhost:5001/users/login/updateUsername"
+      `http://localhost:5001/user/login/updateUsername`,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          newUsername: newUsername,
+        }),
+      }
     );
     const data = await response.json();
     return data;
@@ -42,7 +75,7 @@ export const updateUsername = async () => {
 
 export const deleteUser = async () => {
   try {
-    const response = await fetch("http://localhost:5001/users/login/delete");
+    const response = await fetch("http://localhost:5001/user/login/delete");
     const data = await response.json();
     return data;
   } catch (error) {

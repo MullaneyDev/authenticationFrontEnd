@@ -3,7 +3,7 @@ import "./Login.css";
 import { useState } from "react";
 import { loginUser } from "../../../utils";
 
-const Login = ({ setUser, setAdmin ,setLoggedIn }) => {
+const Login = ({ setUser, setAdmin ,setLoggedIn,loggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -14,13 +14,16 @@ const Login = ({ setUser, setAdmin ,setLoggedIn }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await loginUser(username, password);
+    if (!loggedIn) {
+         const response = await loginUser(username, password);
     await setMessage(response.message);
     if (response.message === "Successful login") {
       await setUser(response.user);
-      await setAdmin(response.user.isAdmin);
       await setLoggedIn(true)
+      await setAdmin(response.user.isAdmin);
     }
+    }
+ setMessage("Log Out first before switching accounts")
   };
 
   return (

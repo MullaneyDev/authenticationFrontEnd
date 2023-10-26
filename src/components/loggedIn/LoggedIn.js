@@ -4,6 +4,7 @@ import Footer from "../layout/footer/footer";
 import Header from "../layout/header/header";
 import UserContainer from "../user/userContainer/UserContainer";
 import { deleteUser, updateUsername } from "../../utils";
+import { writeCookie } from "../../common";
 
 const LoggedIn = ({users, setUsers, user,setUser, admin,setAdmin,loggedIn,setLoggedIn}) => {
       const [username, setUsername] = useState("");
@@ -25,12 +26,14 @@ const LoggedIn = ({users, setUsers, user,setUser, admin,setAdmin,loggedIn,setLog
         setLoggedIn(false);
       };
  const handleLogout = async () => {
+  await writeCookie("jwt_token", user.token, 0);
   await setUser({})
   await setLoggedIn(false)
+  
  }
   return (
     <div className="App">
-      <Header user={user} />
+      <Header user={user} loggedIn={loggedIn} />
       <UserContainer
         users={users}
         setUsers={setUsers}

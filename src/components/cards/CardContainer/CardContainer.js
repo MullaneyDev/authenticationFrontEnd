@@ -2,8 +2,9 @@ import React from "react";
 import Card from "../Card/Card";
 import "./CardContainer.css";
 import { findAllUsers } from "../../../utils";
+import { writeCookie } from "../../../common";
 
-const CardContainer = ({
+const CardContainer = ({user,
   users,
   setUsers,
   setUser,
@@ -15,6 +16,7 @@ const CardContainer = ({
     setUsers(registeredUsers.getUsers);
   };
   const handleLogout = async () => {
+    await writeCookie("jwt_token", user.token, 0);
     await setUser({});
     await setLoggedIn(false);
     await setAdmin(false)

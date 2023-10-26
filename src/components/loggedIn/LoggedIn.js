@@ -24,9 +24,13 @@ const LoggedIn = ({users, setUsers, user,setUser, admin,setAdmin,loggedIn,setLog
         deleteUser(username);
         setLoggedIn(false);
       };
+ const handleLogout = async () => {
+  await setUser({})
+  await setLoggedIn(false)
+ }
   return (
     <div className="App">
-      <Header />
+      <Header user={user} />
       <UserContainer
         users={users}
         setUsers={setUsers}
@@ -63,6 +67,7 @@ const LoggedIn = ({users, setUsers, user,setUser, admin,setAdmin,loggedIn,setLog
         >
           Delete Account
         </button>
+        <button onClick={() => handleLogout()}>Log Out</button>
       </div>
       <Footer />
     </div>

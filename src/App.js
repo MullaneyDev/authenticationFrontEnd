@@ -51,6 +51,8 @@ if (!admin) {
         setUser={setUser}
         admin={admin}
         setAdmin={setAdmin}
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
       />
     </div>
   );

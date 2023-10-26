@@ -4,10 +4,10 @@ import Header from "../layout/header/header";
 import UserContainer from "../user/userContainer/UserContainer";
 import CardContainer from "../cards/CardContainer/CardContainer";
 
-const Admin = ({users,setUsers,user,setUser,admin,setAdmin}) => {
+const Admin = ({users,setUsers,user,setUser,admin,setAdmin,loggedIn, setLoggedIn}) => {
   return (
     <div className="App">
-      <Header />
+      <Header user={user} />
       <UserContainer
         users={users}
         setUsers={setUsers}
@@ -16,7 +16,7 @@ const Admin = ({users,setUsers,user,setUser,admin,setAdmin}) => {
         admin={admin}
         setAdmin={setAdmin}
       />
-      <CardContainer users={users} setUsers={setUsers} user={user} setUser={setUser}/>
+      <CardContainer users={users} setUsers={setUsers} user={user} setUser={setUser} admin={admin} setAdmin={setAdmin}loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
       <Footer />
     </div>
   );

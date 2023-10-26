@@ -15,7 +15,7 @@ const NotLoggedIn = ({
 }) => {
   return (
     <div className="App">
-      <Header />
+      <Header user={user} />
       <UserContainer
         users={users}
         setUsers={setUsers}
